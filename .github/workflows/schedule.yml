@@ -2,11 +2,9 @@ name: Kabutan High Dividend Screener
 
 on:
   schedule:
-    # 日本時間 毎週水曜日 20:00 (UTC 11:00)
     - cron: '0 11 * * 3'
-    # 日本時間 毎週日曜日 11:00 (UTC 02:00)
     - cron: '0 2 * * 0'
-  workflow_dispatch: # 手動実行用（初回取得時に利用）
+  workflow_dispatch:
 
 jobs:
   scrape-and-notify:
@@ -28,5 +26,5 @@ jobs:
           
       - name: Run Scraper
         env:
-          LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
         run: python scraper.py
